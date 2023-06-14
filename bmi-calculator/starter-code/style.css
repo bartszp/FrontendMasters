@@ -1,0 +1,21 @@
+
+/* Add fonts */
+@font-face{
+    font-family: Inter;
+    src:url(./assets/fonts/static/Inter-Regular.ttf);
+}
+@font-face{
+    font-family: InterBold;
+    src:url(./assets/fonts/static/Inter-SemiBold.ttf);
+}
+
+/* Basic setup */
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    font-family: Inter;
+}
+
+
+
