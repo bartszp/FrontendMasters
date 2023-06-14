@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    background-color: rgb(0, 6, 38);
+}
+
+#rating-card{
+    display:block;
+}
+
+[id$='-card'] {
+    width: 400px;
+    color: white;
+    background-image: linear-gradient(-120deg, #2f2f3f, #726c87);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+}
+
+@media screen and (max-width:700px) {
+    [id$='-card'] {
+        width: 90%;
+    }
+}
+
+.container {
+    margin: 30px;
+}
+
+.star {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color: #7c7692;
+    border-radius: 50%;
+}
+
+.star svg {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+p {
+    margin: 1rem 0;
+    line-height: 1.5rem;
+    color: #e8e8e8;
+}
+
+#grades {
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.grade {
+    width: 50px;
+    height: 50px;
+    background-color: #76708c;
+    border-radius: 50%;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.clicked {
+    background-color: #FC7614;
+}
+
+/* .grade:hover {
+    background-color: #b4abd6;
+} */
+
+button {
+    display: block;
+    width: 100%;
+    height: 60px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    background-color: #FC7614;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ffe9d8;
+    color: #FC7614
+}
+
+#thank-you-card{
+    display:none;
+}
+
+#thank-you-card .container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+#score{
+    background-color: #2f2f3f;
+    padding:10px;
+    border-radius: 20px;
+    color:#FC7614;
+    margin-top:20px;
+}
+
+#thank-you-card h1 {
+    margin-top:30px;
+}
+
+#thank-you-card p {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
