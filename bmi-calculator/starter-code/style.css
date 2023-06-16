@@ -154,6 +154,15 @@ h3 {
     gap: 15px;
 }
 
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
 #result-card{
     margin:24px 24px 0 24px;
     color:#ffffff;
