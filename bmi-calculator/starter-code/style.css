@@ -17,6 +17,10 @@
     font-family: Inter;
 }
 
+body{
+    background-color: #f8fcff;
+}
+
 h3 {
     font-size: 24px;
 }
@@ -29,6 +33,12 @@ h3 {
 .container-flex-ver {
     display: flex;
     flex-direction: column;
+}
+
+/* Utilities */
+
+.hidden{
+    display: none;
 }
 
 /* Title and description on hero */
@@ -85,6 +95,8 @@ h3 {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
+    padding: 0 0 24px 0;
+    box-shadow: 5px 5px 15px  #727a85 ;
 }
 
 #bmi-calculator h3 {
@@ -92,8 +104,8 @@ h3 {
     padding: 24px;
 }
 
-.radio-btns {
-    justify-content: space-between;
+#radio-btns {
+    justify-content: space-around;
     padding: 0 24px;
 }
 
@@ -103,7 +115,7 @@ h3 {
     margin-right: 10px;
 }
 
-.inputs {
+#inputs-metric, #inputs-imperial {
     padding: 0 24px;
 }
 
@@ -135,3 +147,129 @@ h3 {
     color: #345FF6;
     font-weight:600;
 }
+
+/* Input for imperial units */
+.input-imperial-group{
+    display:flex;
+    gap: 15px;
+}
+
+#result-card{
+    margin:24px 24px 0 24px;
+    color:#ffffff;
+    background-color: #345FF6;
+    padding:30px;
+    border-radius: 15px;
+}
+
+#result-card h5{
+    margin-top:10px;
+}
+
+#result-card #result{
+    margin-top:10px;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+#result-card p{
+    margin-top:20px;
+    font-size: 0.9rem;
+    line-height:21px;
+}
+
+.perfect-range{
+    font-weight: 600;
+}
+
+.result-meaning-card img{
+    margin-top:50px;
+}
+
+.result-meaning-text{
+    margin-top:20px;
+    padding:24px;
+}
+
+.result-meaning-text h3{
+    font-size: 2rem;
+}
+
+.result-meaning-text p{
+    margin-top:30px;
+    line-height:1.4rem;
+    color:#5E6E85;
+}
+.result-meaning-text p .perfect-range{
+    font-weight: 100 ;
+}
+
+/* Advices */
+
+.advice-section{
+    margin-top: 40px;
+    padding:24px;
+}
+
+.advice-card{
+    margin-top:30px;
+}
+.advice-card h3{
+ margin-top:20px;
+}
+
+.advice-card p{
+    margin-top:15px;
+    color:#727a85
+}
+
+/* Limitations */
+
+.limitations{
+    margin-top: 30px;
+    padding:24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.limitations h2{
+    text-align: center;
+}
+
+.limitations-intro p{
+    text-align: center;
+    margin-top:20px;
+    color:#727a85;
+}
+
+.limitations-card:nth-child(2){
+    margin-top:40px;
+}
+
+.limitations-card{
+    margin-top:15px;
+    box-shadow: 19px 21px 40px -34px rgba(66, 68, 90, 1);
+    border-radius: 15px;
+}
+
+.limitations-card h4{
+ display: inline-block;
+}
+
+.limitations-icon{
+    display: inline-block;
+    padding-right:10px;
+}
+
+.card-icon-title{
+    display:flex;
+    align-items: center;
+    padding:24px;
+}
+
+.limitations-card p{
+    color:#727a85;
+    line-height: 1.4rem;
+    padding:0 24px 24px 24px;
+}
+
