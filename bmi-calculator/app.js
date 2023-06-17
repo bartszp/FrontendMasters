@@ -3,19 +3,29 @@ let imperialBtn = document.getElementById("imperial");
 
 let metricForm = document.getElementById("inputs-metric");
 let imperialForm = document.getElementById("inputs-imperial");
-let unit = metric;
+let unit = "metric";
 let inputs = document.querySelectorAll("input[type='number']");
 let radioBtns = document.getElementById("radio-btns");
 
+let inputsObjectMetric = {
+    heightCm: "",
+    weightKg: "",
+}
+
+let inputsObjectImperial = {
+    heightFt: "",
+    heigthIn: "",
+    weightSt: "",
+    weightIbs: "",
+}
+
 // Startup
 metricBtn.checked = true;
-inputs[0].setSelectionRange(0,0);
+
 // Startup
 
 // Event Listeners
 radioBtns.addEventListener("click", selectUnit);
-
-
 
 // Show appropriate form based on chosen unit
 function selectUnit(e) {
@@ -46,8 +56,7 @@ function switchForm() {
     }
 }
 
-// Validation of the input
-
+// Validation of the input - shoe message if value is out of specified range
 inputs.forEach(input => {
     input.addEventListener("input", (e) => { validateInput(e, input) });
 })
@@ -64,6 +73,34 @@ function validateInput(e, input) {
     }
 }
 
+// Set height and weigth every time values has been changed
+
+console.log(inputs);
+function convertInputs() {
+    if (unit === "metric"){
+        //Height        
+        inputsObjectMetric.heightCm = inputs[4].value;
+        //Convert centimeters to feet
+        let CmToFt = inputsObjectMetric.heightCm * 0.0328;
+        //Assign a total number of feet
+        inputsObjectImperial.heightFt = Math.floor(CmToFt);
+        //Convert remaining fraction of foot to inches and assign in
+        inputsObjectImperial.heigthIn = Number.parseInt(((CmToFt%1) * 12).toFixed(0));
+
+        //Weight
+        inputsObjectMetric.weightKg = inputs[5].value;
+        //Convert kg to stones
+        let KgToSt = inputsObjectMetric.weightKg * 0.157473;
+        //Assign a total number of stones
+        inputsObjectImperial.weightSt = Math.floor(KgToSt);
+        //Convert remaining fraction of stones to ibs and assign it
+        inputsObjectImperial.weightIbs = Number.parseInt(((KgToSt%1)*14).toFixed(0));
+        console.log(inputsObjectImperial.weightSt, inputsObjectImperial.weightIbs);
+    }
+}
+
+convertInputs()
+
 
 function calculateBMI(unit, height, weight) {
     if (unit === "metric") {
@@ -76,4 +113,4 @@ function calculateBMI(unit, height, weight) {
         return bmi;
     }
 }
-console.log(calculateBMI('metric', 1.70, 60));
+
