@@ -129,6 +129,7 @@ h3 {
     font-weight: 600;
 }
 
+
 .input-number label {
     font-size: 0.8rem;
     padding: 15px 0 10px 0;
@@ -136,6 +137,7 @@ h3 {
 
 .input-unit-group {
     position: relative;
+    width:100%;
 }
 
 .input-unit-group .unit {

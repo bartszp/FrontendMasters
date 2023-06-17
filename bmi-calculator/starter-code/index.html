@@ -31,57 +31,58 @@
   <div id="bmi-calculator">
     <h3>Enter your details below</h3>
     <div id="radio-btns" class="container-flex-hor">
-      <div id = "metric-radio-btn" class="radio-button">
+      <div id="metric-radio-btn" class="radio-button">
         <input type="radio" name="metric" id="metric">
         <label for="metric" id="metricLabel">Metric</label>
       </div>
-      <div id = "imperial-radio-btn" class="radio-button">
+      <div id="imperial-radio-btn" class="radio-button">
         <input type="radio" name="imperial" id="imperial">
         <label for="imperial" id="imperialLabel">Imperial</label>
       </div>
     </div>
-
+    <!-- Form in imperial units -->
     <div id="inputs-imperial" class="inputs container-flex-ver hidden">
       <div class="input-number container-flex-ver">
         <label for="height">Height</label>
         <div class="input-imperial-group">
           <div class="input-unit-group">
-            <input type="number" name="height-ft" id="height-ft" value="170">
+            <input type="number" name="height-ft" id="height-ft"  max="9" min="0">
             <div id="height-unit-ft" class="unit">ft</div>
           </div>
           <div class="input-unit-group">
-            <input type="number" name="height-in" id="height-in" value="170">
+            <input type="number" name="height-in" id="height-in"  max="100" min="0">
             <div id="height-unit-in" class="unit">in</div>
           </div>
         </div>
       </div>
+
       <div class="input-number container-flex-ver">
         <label for="weight">Weight</label>
         <div class="input-imperial-group">
           <div class="input-unit-group">
-            <input type="number" name="weight-st" id="weight-st" value="65">
+            <input type="number" name="weight-st" id="weight-st"  max="45" min="0">
             <div id="weight-unit-st" class="unit">st</div>
           </div>
           <div class="input-unit-group">
-            <input type="number-ibs" name="weight-ibs" id="weight-ibs" value="65">
+            <input type="number-ibs" name="weight-ibs" id="weight-ibs"  max="600" min="0">
             <div id="weight-unit-ibs" class="unit">Ibs</div>
           </div>
         </div>
       </div>
     </div>
-    
-    <div id ="inputs-metric" class="container-flex-ver">
+    <!-- Form in metric units -->
+    <div id="inputs-metric" class="container-flex-ver">
       <div class="input-number container-flex-ver">
         <label for="height">Height</label>
         <div class="input-unit-group">
-          <input type="number" name="height" id="height" value="170">
+          <input type="number" name="height" id="height" max="250" min="0">
           <div id="height-unit" class="unit">cm</div>
         </div>
       </div>
       <div class="input-number container-flex-ver">
         <label for="weight">Weight</label>
         <div class="input-unit-group">
-          <input type="number" name="weight" id="weight" value="65">
+          <input type="number" name="weight" id="weight"  max="250" min="0">
           <div id="weight-unit" class="unit">kg</div>
         </div>
 
