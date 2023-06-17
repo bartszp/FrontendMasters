@@ -3,6 +3,15 @@ let imperialBtn = document.getElementById("imperial");
 
 let metricForm = document.getElementById("inputs-metric");
 let imperialForm = document.getElementById("inputs-imperial");
+let heightCmInput = document.getElementById("height");
+let weightKgInput = document.getElementById("weight");
+let heightFtInput = document.getElementById("height-ft");
+let heightInInput = document.getElementById("height-in");
+let weightStInput = document.getElementById("weight-st");
+let weightIbsInput = document.getElementById("weight-ibs");
+
+let BMIdisplay = document.getElementById("result");
+
 let unit = "metric";
 let inputs = document.querySelectorAll("input[type='number']");
 let radioBtns = document.getElementById("radio-btns");
@@ -20,8 +29,12 @@ let inputsObjectImperial = {
 }
 
 // Startup
-metricBtn.checked = true;
-
+if (unit === "metric") {
+    metricBtn.checked = true;
+} else {
+    imperialBtn.checked = true;
+}
+switchForm()
 // Startup
 
 // Event Listeners
@@ -61,7 +74,7 @@ inputs.forEach(input => {
     input.addEventListener("input", (e) => { validateInput(e, input) });
 })
 
-function validateInput(e, input) {
+function validateInput(e, input,) {
     if (e.target.validity.rangeOverflow) {
         input.setCustomValidity("This number is too high");
         input.reportValidity();
@@ -75,42 +88,73 @@ function validateInput(e, input) {
 
 // Set height and weigth every time values has been changed
 
-console.log(inputs);
-function convertInputs() {
-    if (unit === "metric"){
-        //Height        
-        inputsObjectMetric.heightCm = inputs[4].value;
+function convertInputs(populateInputs) {
+    if (unit === "metric") {
+        //Set imperial values based on values in metric system - height    
+        inputsObjectMetric.heightCm = parseInt(inputs[4].value);
         //Convert centimeters to feet
-        let CmToFt = inputsObjectMetric.heightCm * 0.0328;
+        let CentimetersToFeet = inputsObjectMetric.heightCm * 0.0328;
         //Assign a total number of feet
-        inputsObjectImperial.heightFt = Math.floor(CmToFt);
+        inputsObjectImperial.heightFt = Math.floor(CentimetersToFeet);
         //Convert remaining fraction of foot to inches and assign in
-        inputsObjectImperial.heigthIn = Number.parseInt(((CmToFt%1) * 12).toFixed(0));
-
+        inputsObjectImperial.heigthIn = Number.parseInt(((CentimetersToFeet % 1) * 12).toFixed(0));
+       
         //Weight
-        inputsObjectMetric.weightKg = inputs[5].value;
-        //Convert kg to stones
+        inputsObjectMetric.weightKg = parseInt(inputs[5].value);
         let KgToSt = inputsObjectMetric.weightKg * 0.157473;
-        //Assign a total number of stones
         inputsObjectImperial.weightSt = Math.floor(KgToSt);
-        //Convert remaining fraction of stones to ibs and assign it
-        inputsObjectImperial.weightIbs = Number.parseInt(((KgToSt%1)*14).toFixed(0));
-        console.log(inputsObjectImperial.weightSt, inputsObjectImperial.weightIbs);
+        inputsObjectImperial.weightIbs = Number.parseInt(((KgToSt % 1) * 14).toFixed(0));
+    } else if (unit === "imperial") {
+        //Set metric values based on values in imperial system -height
+        //assign values from inputs
+        inputsObjectImperial.heightFt = parseInt(inputs[0].value);
+        inputsObjectImperial.heigthIn = parseInt(inputs[1].value);
+        let totalInches = inputsObjectImperial.heightFt * 12 + inputsObjectImperial.heigthIn;
+        // Assign calulated height in cm
+        inputsObjectMetric.heightCm = Math.round(totalInches * 2.54);
+        console.log(inputsObjectMetric.heightCm, inputsObjectImperial.heightFt);
+        
+        //weight
+        inputsObjectImperial.weightSt = parseInt(inputs[2].value);
+        inputsObjectImperial.weightIbs = parseInt(inputs[3].value);
+        let totalIbs = inputsObjectImperial.weightSt * 14 + inputsObjectImperial.weightIbs;
+        inputsObjectMetric.weightKg = Math.round(totalIbs * 0.453592);
     }
+    populateInputs();
 }
 
-convertInputs()
+let varia = NaN;
+console.log(Number.isNaN(varia))
+
+//Populate each input based on data from object
+function populateInputs() {
+    heightFtInput.value = Number.isNaN(inputsObjectImperial.heightFt) ? "" : inputsObjectImperial.heightFt;
+    heightInInput.value = Number.isNaN(inputsObjectImperial.heigthIn) ? "" : inputsObjectImperial.heigthIn;
+    weightStInput.value = Number.isNaN(inputsObjectImperial.weightSt) ? "" : inputsObjectImperial.weightSt;
+    weightIbsInput.value = Number.isNaN(inputsObjectImperial.weightIbs) ? "" : inputsObjectImperial.weightIbs;
+    heightCmInput.value = Number.isNaN(inputsObjectMetric.heightCm) ? "" : inputsObjectMetric.heightCm;
+    weightKgInput.value = Number.isNaN(inputsObjectMetric.weightKg) ? "" : inputsObjectMetric.weightKg;
+    calculateBMI(inputsObjectMetric.heightCm, inputsObjectMetric.weightKg);
+}
+
+// Every time value in one of the inputs is changed, the values are converted and populated in opposite measurement system
+// e.g. When user enter 170cm and then switch to imperial, the inputs for ft and inches will be populated with converted values 
+inputs.forEach(input => {
+    input.addEventListener("input", () => { convertInputs(populateInputs) });
+})
 
 
-function calculateBMI(unit, height, weight) {
-    if (unit === "metric") {
-        let bmi = weight / (height ** 2)
+function calculateBMI(height, weight) {
+    if (height && weight) {
+        bmi = weight / ((height / 100) ** 2);
         bmi = bmi.toFixed(1);
-        return bmi;
+        if (bmi > 0 && bmi < 100) {
+            BMIdisplay.innerText = bmi;
+        } else {
+            BMIdisplay.innerText = "invalid input"
+        }
     } else {
-        let bmi = weight / height ** 2
-        bmi = bmi.toFixed(1);
-        return bmi;
+        BMIdisplay.innerText = "...";
     }
 }
 
