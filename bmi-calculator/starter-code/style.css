@@ -294,6 +294,7 @@ input::-webkit-inner-spin-button {
 @media screen and (min-width:768px) {
     .result-meaning-card {
         flex-direction: row;
+        align-items: center;
     }
 
     .result-meaning-card img {
