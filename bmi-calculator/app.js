@@ -1,8 +1,12 @@
 let metricBtn = document.getElementById("metric");
 let imperialBtn = document.getElementById("imperial");
-
 let metricForm = document.getElementById("inputs-metric");
 let imperialForm = document.getElementById("inputs-imperial");
+let BMIdisplay = document.getElementById("result");
+let perfectRangeMin = document.getElementsByClassName("perfect-range-min");
+let perfectRangeMax = document.getElementsByClassName("perfect-range-max");
+let category = document.getElementById("category");
+
 let heightCmInput = document.getElementById("height");
 let weightKgInput = document.getElementById("weight");
 let heightFtInput = document.getElementById("height-ft");
@@ -10,7 +14,6 @@ let heightInInput = document.getElementById("height-in");
 let weightStInput = document.getElementById("weight-st");
 let weightIbsInput = document.getElementById("weight-ibs");
 
-let BMIdisplay = document.getElementById("result");
 
 let unit = "metric";
 let inputs = document.querySelectorAll("input[type='number']");
@@ -67,6 +70,7 @@ function switchForm() {
         metricForm.classList.add("hidden");
         imperialForm.classList.remove("hidden");
     }
+    calculateBMI(inputsObjectMetric.heightCm, inputsObjectMetric.weightKg);
 }
 
 // Validation of the input - shoe message if value is out of specified range
@@ -98,7 +102,7 @@ function convertInputs(populateInputs) {
         inputsObjectImperial.heightFt = Math.floor(CentimetersToFeet);
         //Convert remaining fraction of foot to inches and assign in
         inputsObjectImperial.heigthIn = Number.parseInt(((CentimetersToFeet % 1) * 12).toFixed(0));
-       
+
         //Weight
         inputsObjectMetric.weightKg = parseInt(inputs[5].value);
         let KgToSt = inputsObjectMetric.weightKg * 0.157473;
@@ -113,7 +117,7 @@ function convertInputs(populateInputs) {
         // Assign calulated height in cm
         inputsObjectMetric.heightCm = Math.round(totalInches * 2.54);
         console.log(inputsObjectMetric.heightCm, inputsObjectImperial.heightFt);
-        
+
         //weight
         inputsObjectImperial.weightSt = parseInt(inputs[2].value);
         inputsObjectImperial.weightIbs = parseInt(inputs[3].value);
@@ -123,8 +127,6 @@ function convertInputs(populateInputs) {
     populateInputs();
 }
 
-let varia = NaN;
-console.log(Number.isNaN(varia))
 
 //Populate each input based on data from object
 function populateInputs() {
@@ -146,10 +148,11 @@ inputs.forEach(input => {
 
 function calculateBMI(height, weight) {
     if (height && weight) {
-        bmi = weight / ((height / 100) ** 2);
+        let bmi = weight / ((height / 100) ** 2);
         bmi = bmi.toFixed(1);
         if (bmi > 0 && bmi < 100) {
             BMIdisplay.innerText = bmi;
+            populateText(bmi, height);
         } else {
             BMIdisplay.innerText = "invalid input"
         }
@@ -157,4 +160,33 @@ function calculateBMI(height, weight) {
         BMIdisplay.innerText = "...";
     }
 }
+
+function populateText(bmi, height){
+
+    let minWeight = (18 * ((height / 100) ** 2)).toFixed(1);
+    let maxWeight = (25 * ((height / 100) ** 2)).toFixed(1);
+    Array.from(perfectRangeMin).forEach(field =>{
+        field.innerText = (unit ==="metric" ? (minWeight + " kgs") : ((minWeight *2.2).toFixed(0) + " Ibs"));
+    });
+    Array.from(perfectRangeMax).forEach(field =>{
+        field.innerText = (unit ==="metric" ? (maxWeight + " kgs") : ((maxWeight *2.2).toFixed(0) + " Ibs"));;
+    });
+    switch (true) {
+        case bmi <= 18:
+            category.innerText = "underweight"
+            break;
+        case (bmi > 18 && bmi <= 25):
+            category.innerText = "healthy weight"
+            break;
+        case (bmi > 25 && bmi <= 30):
+            category.innerText = "overweight"
+            break;
+        case (bmi > 30):
+            category.innerText = "obese"
+            break;
+        default:
+            break;
+    }
+}
+
 
