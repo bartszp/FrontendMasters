@@ -46,7 +46,7 @@
     <picture id="my-photo">
       <source srcset="./assets/images/image-profile-tablet.webp" media="(min-width: 768px)" />
       <source srcset="./assets/images/image-profile-desktop.webp" media="(min-width: 1024px)" />
-      <img src="./assets/images/image-profile-mobile.webp" alt="my-photo" />
+      <img src="./assets/images/image-profile-mobile.webp" alt="my-photo" width="100%" />
     </picture>
     <div id="rings-1">
       <svg xmlns="http://www.w3.org/2000/svg" width="530" height="129">
@@ -59,7 +59,7 @@
         </g>
       </svg>
     </div>
-    <h1>Nice to meet you! <br>I'm <span class="underlined">Adam Keyes.</span></h1>
+    <h1>Nice to meet you! I'm <span class="underlined">Adam Keyes.</span></h1>
     <p>
       Based in the UK, I'm a front-end developer passionate about
       building accessible web apps that users love.
@@ -70,7 +70,7 @@
     </div>
   </section>
   <hr>
-  <section id="technologies flex">
+  <section id="technologies" class="flex">
     <div class="tech-card">
       <h2>HTML</h2>
       <p>4 Years Experience</p>
@@ -103,9 +103,9 @@
 
   </section>
 
-  <hr>
 
-  <section id="projects">
+
+  <section id="projects" class="flex">
     <div class="project-header flex">
       <h2>
         Projects
@@ -240,24 +240,28 @@
 
   </section>
 
-<hr>
+
 
   <section id="contact" class="flex">
-    <div class="contact-group flex">
-      <h2>Contact</h2>
-      <p>
-        I would love to hear about your project and how I could help. Please
-        fill in the form, and I’ll get back to you as soon as possible.
-      </p>
+    <div class="contact-container">
+      <div class="contact-group flex">
+        <h2>Contact</h2>
+        <p>
+          I would love to hear about your project and how I could help. Please
+          fill in the form, and I’ll get back to you as soon as possible.
+        </p>
+      </div>
+      <form action="" class="flex">
+        <input type="text" name="name" id="name" placeholder="NAME">
+        <input type="email" name="email" id="email" placeholder="EMAIL">
+        <textarea name="message" id="message" cols="" rows="3" placeholder="MESSAGE"></textarea>
+        <button class="button">Send message</button>
+      </form>
     </div>
-    <form action="" class="flex">
-      <input type="text" name="name" id="name" placeholder="NAME">
-      <input type="email" name="email" id="email" placeholder="EMAIL">
-      <textarea name="message" id="message" cols="" rows="3"placeholder="MESSAGE"></textarea>
-      <button class="button">Send message</button>
-    </form>
+    <hr>
 
   </section>
+
   <footer class="flex">
     <h3>adamkeyes</h3>
     <div class="social-icon">
