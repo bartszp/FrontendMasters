@@ -415,6 +415,34 @@ footer h3 {
     border-color: var(--color2);
 }
 
+.input-group{
+    position:relative;
+}
+
+.validationInfo{
+    color:red;
+    font-size:12px;
+    position: absolute;
+    bottom:-17px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+    display: block;
+    width: 100%;
+    padding: 20px 15px 15px 15px;
+    background-color: transparent;
+    border-width: 0 0 2px 0;
+    resize: none;
+    -webkit-text-fill-color: white;
+    transition: background-color 5000s ease-in-out 0s;
+
+}
+
 /* FOOTER */
 
 

@@ -251,11 +251,17 @@
           fill in the form, and I’ll get back to you as soon as possible.
         </p>
       </div>
-      <form action="" class="flex">
-        <input type="text" name="name" id="name" placeholder="NAME">
-        <input type="email" name="email" id="email" placeholder="EMAIL">
-        <textarea name="message" id="message" cols="" rows="3" placeholder="MESSAGE"></textarea>
-        <button class="button">Send message</button>
+      <form id = "contact-form" action="" class="flex">
+        <div class="input-group">
+          <input type="text" name="name" id="name" placeholder="NAME">
+        </div>
+        <div class="input-group">
+          <input type="email" name="email" id="email" placeholder="EMAIL">
+        </div>
+        <div class="input-group">
+          <textarea name="message" id="message" cols="" rows="3" placeholder="MESSAGE"></textarea>
+        </div>
+        <button id="sendButton" class="button">Send message</button>
       </form>
     </div>
     <hr>
