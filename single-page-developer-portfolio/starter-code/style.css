@@ -106,6 +106,17 @@ footer h3 {
     filter: invert(78%) sepia(69%) saturate(383%) hue-rotate(89deg) brightness(390%) contrast(94%);
 }
 
+.visible{
+    opacity:1 !important;
+    transition: all 1s ease-in;
+}
+
+.slide-in{
+    transform: translate(0%, 0%) !important;
+}
+
+
+
 @media screen and (min-width: 768px) {
 
     header h3,
@@ -135,10 +146,8 @@ footer h3 {
     text-align: center;
     width: 50%;
     min-width: 200px;
-}
-
-#my-photo img {
-    /* width: 60%; */
+    transform: translate(0%, 100%);
+    opacity: 0;
 }
 
 #rings-1 {
@@ -152,6 +161,7 @@ footer h3 {
     font-size: 2.7rem;
     line-height: 2.7rem;
     text-align: center;
+    opacity:0;
 }
 
 .underlined {
@@ -164,11 +174,14 @@ footer h3 {
     padding-top: 50px;
     width: auto;
     text-align: center;
+    opacity:0;
+    transform: translate(-100%);
 
 }
 
 #hero .button {
     padding: 30px 0;
+    opacity:0;
 }
 
 @media screen and (min-width: 768px) {
@@ -239,6 +252,16 @@ footer h3 {
 
 .tech-card h2 {
     font-size: 2rem;
+}
+
+.tech-card:nth-child(odd){
+    transform: translate(-110%, 0%);
+    opacity: 0;
+}
+
+.tech-card:nth-child(even){
+    transform: translate(110%, 0%);
+    opacity: 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -442,6 +465,37 @@ textarea:-webkit-autofill:focus {
     transition: background-color 5000s ease-in-out 0s;
 
 }
+
+@media screen and (min-width: 1024px){
+    #contact{
+        width:100%;
+    }
+
+    #contact .contact-container {
+        flex-direction: row;
+        min-width: 100%;
+        gap: 30px; 
+        justify-content:space-around;
+    }
+
+    .contact-group{
+        flex-direction: column;
+        width:400px;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .contact-group h2{
+        margin:20px 0  ;
+    }
+    
+    #contact form{
+        width:400px;
+        margin:0;
+    }
+}
+
 
 /* FOOTER */
 
