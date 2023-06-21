@@ -45,7 +45,7 @@ h3 {
 }
 
 p {
-    font-size: 15px;
+    font-size: 18px;
     line-height: 28px;
 }
 
@@ -248,7 +248,16 @@ footer h3 {
 
     .tech-card {
         width: 45%;
+        margin-top: 50px;
     }
+}
+
+@media screen and (min-width: 1024px){
+.tech-card h2{
+    font-size:70px
+}
+
+
 }
 
 /* PROJECTS */
@@ -396,6 +405,14 @@ footer h3 {
 .contact-container {
     max-width: 500px;
     margin: 0 auto;
+}
+
+.invalid{
+    border-color: red !important;
+}
+
+.valid{
+    border-color: var(--color2);
 }
 
 /* FOOTER */
