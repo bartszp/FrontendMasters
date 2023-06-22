@@ -18,5 +18,7 @@ makeVisibleObserver.observe(mainHeading);
 makeVisibleObserver.observe(mainDesc);
 makeVisibleObserver.observe(picture);
 makeVisibleObserver.observe(heroButton);
-console.log(window.scrollY);
+
+
+window.addEventListener("scroll", ()=>{console.log(window.scrollY)})
 

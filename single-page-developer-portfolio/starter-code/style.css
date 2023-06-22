@@ -54,6 +54,7 @@ p {
     flex-wrap: wrap;
 }
 
+
 body {
     max-width: 1200px;
     margin: 0 auto;
@@ -112,7 +113,7 @@ footer h3 {
 }
 
 .slide-in{
-    transform: translate(0%, 0%) !important;
+    transform: translateX(0%) !important;
 }
 
 
@@ -175,7 +176,7 @@ footer h3 {
     width: auto;
     text-align: center;
     opacity:0;
-    transform: translate(-100%);
+    transform: translateX(-100%);
 
 }
 
@@ -242,6 +243,8 @@ footer h3 {
 #technologies {
     flex-direction: column;
     justify-content: center;
+    position:relative;
+    overflow-x: hidden;
 }
 
 .tech-card {
@@ -255,12 +258,13 @@ footer h3 {
 }
 
 .tech-card:nth-child(odd){
-    transform: translate(-110%, 0%);
+    transform: translateX(-130%);
     opacity: 0;
 }
 
 .tech-card:nth-child(even){
-    transform: translate(110%, 0%);
+    /* position:absolute; */
+    transform: translateX(130%);
     opacity: 0;
 }
 
