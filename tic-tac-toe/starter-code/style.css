@@ -1,0 +1,136 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+:root {
+    --blue2: rgb(49, 195, 189);
+    --blue1: rgb(101, 233, 228);
+    --blue3: rgb(33, 122, 119);
+    --blue4: rgb(26, 42, 51);
+    --blue5: rgb(31, 54, 65);
+    --blue6: rgb(18, 29, 35);
+    --yellow3: rgb(155, 113, 35);
+    --yellow2: rgb(242,177,55);
+    --yellow1: rgb(255,200,96);
+    --grey: rgb(168, 191, 201);
+    --white: rgb(219,232,237);
+}
+
+body {
+    background-color: var(--blue4);
+}
+
+/* Common classes */
+
+.flex-ver {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-hor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box {
+    padding: 10px;
+    background-color: var(--blue5);
+    border-radius: 15px;
+    border-bottom: 5px solid var(--blue6);
+}
+
+.bottom-border{
+    border-radius: 15px;
+    border-bottom: 5px solid var(--blue6);
+}
+
+#logo {
+    height: 15px;
+    gap: 10px;
+}
+
+img {
+    width: auto;
+    height: inherit;
+
+}
+
+[class^="button-"] {
+    width: 100%;
+    text-align: center;
+    color: var(--white);
+}
+
+.button-yellow {
+    background-color: ;
+}
+
+/* START GAME PAGE */
+
+#start-menu {
+    gap: 20px;
+}
+
+#selection-card h5 {
+    padding: 10px;
+    font-size: 0.6rem;
+    color: var(--white);
+}
+
+#selection-toggle {
+    background-color: var(--blue4);
+    border-radius: 5px;
+}
+
+.selection-button {
+    width: 110px;
+    height: 30px;
+    text-align: center;
+    background-color: var(--blue5);
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.selection-button img {
+    transform: scale(0.7);
+    filter: brightness(0) saturate(100%) invert(80%) sepia(19%) saturate(255%) hue-rotate(153deg) brightness(95%) contrast(81%);
+}
+
+#selection-card p {
+    padding: 10px;
+    font-size: 0.5rem;
+    color: var(--grey);
+}
+
+#selection-card .selected {
+    background-color: var(--grey);
+}
+
+#selection-card .selected img {
+    filter: brightness(0) saturate(100%) invert(16%) sepia(31%) saturate(724%) hue-rotate(154deg) brightness(97%) contrast(90%);
+
+}
+
+#game-mode-selection {
+    width: 100%;
+    gap:5px
+}
