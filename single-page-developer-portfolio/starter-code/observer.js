@@ -20,5 +20,15 @@ makeVisibleObserver.observe(picture);
 makeVisibleObserver.observe(heroButton);
 
 
-window.addEventListener("scroll", ()=>{console.log(window.scrollY)})
 
+window.addEventListener("scroll", showTechnologiesCards)
+
+function showTechnologiesCards (){
+    if(window.pageYOffset*4 > technologies.offsetTop){
+    Array.from(techCards).forEach(card =>{
+        card.classList.add("visible");
+        card.classList.add("slide-in");
+    })
+    }
+
+}
