@@ -75,8 +75,15 @@ img {
 
 [class^="button-"] {
     width: 100%;
+    height:50px;
+    line-height: 50px;
     text-align: center;
-    color: var(--white);
+    color: var(--blue6);
+    font-weight: 600
+}
+
+.hidden{
+    display: none;
 }
 
 .button-yellow {
@@ -104,7 +111,7 @@ img {
     width: 110px;
     height: 30px;
     text-align: center;
-    background-color: var(--blue5);
+    background-color: var(--blue4);
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
@@ -132,5 +139,16 @@ img {
 
 #game-mode-selection {
     width: 100%;
-    gap:5px
+    gap:10px
+}
+
+.button-yellow{
+    background-color: var(--yellow2);
+    border-color: var(--yellow3)
+}
+
+.button-blue{
+    background-color: var(--blue1);
+    border-color: var(--blue3)
+
 }
