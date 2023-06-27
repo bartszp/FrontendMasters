@@ -12,7 +12,7 @@
     --blue1: rgb(101, 233, 228);
     --blue3: rgb(33, 122, 119);
     --blue4: rgb(26, 42, 51);
-    --blue5: rgb(31, 54, 65);
+    --blue5: rgb(37, 64, 76);
     --blue6: rgb(18, 29, 35);
     --yellow3: rgb(155, 113, 35);
     --yellow2: rgb(242,177,55);
@@ -86,9 +86,7 @@ img {
     display: none;
 }
 
-.button-yellow {
-    background-color: ;
-}
+
 
 /* START GAME PAGE */
 
@@ -130,11 +128,12 @@ img {
 
 #selection-card .selected {
     background-color: var(--grey);
+    transition: background-color 0.5s ease;
 }
 
 #selection-card .selected img {
     filter: brightness(0) saturate(100%) invert(16%) sepia(31%) saturate(724%) hue-rotate(154deg) brightness(97%) contrast(90%);
-
+    transition: filter 0.5s ease;
 }
 
 #game-mode-selection {
@@ -148,7 +147,68 @@ img {
 }
 
 .button-blue{
-    background-color: var(--blue1);
+    background-color: var(--blue2);
     border-color: var(--blue3)
 
+}
+
+.button-yellow:hover{
+    background-color: var(--yellow1);
+    border-color: var(--yellow2);
+    cursor: pointer;
+}
+
+.button-blue:hover{
+    background-color: var(--blue1);
+    border-color: var(--blue2);
+    cursor: pointer;
+}
+
+/* Game board */
+
+#header{
+    justify-content: space-between;
+    padding:0 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+}
+
+#turn{
+    background-color: var(--blue5);
+    color:var(--white);
+    padding:10px;
+    align-items: center;
+    justify-content: center;    
+    background-color: var(--blue5);
+    border-radius: 10px;
+    border-bottom: 5px solid var(--blue6);
+    
+}
+
+#turn img {
+    height:15px;
+    padding-right:8px;
+    filter: brightness(0) saturate(100%) invert(80%) sepia(19%) saturate(255%) hue-rotate(153deg) brightness(95%) contrast(81%);
+}
+
+#repeat{
+    width:20px;
+    height:20px;
+}
+
+#game-board{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:15px;
+    padding:15px;
+}
+
+.area{
+    background-color: var(--blue5);
+    height:100px;
+    width: 100px;
+    border-radius: 10px;
+    border-bottom: 5px solid var(--blue6);
 }
