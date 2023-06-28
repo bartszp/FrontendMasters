@@ -1,6 +1,5 @@
 
 // Toogle selection between cross and circle
-
 let oBtn = document.getElementById("select-o");
 let xBtn = document.getElementById("select-x");
 
@@ -13,3 +12,8 @@ xBtn.addEventListener("click", ()=>{
     xBtn.classList.add("selected");
     oBtn.classList.remove("selected");
 })
+
+function createElement (type){
+    let element = document.createElement("img");
+    element.src =  
+}
