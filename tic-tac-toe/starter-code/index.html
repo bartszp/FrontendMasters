@@ -43,7 +43,7 @@
   <!-- New game menu end -->
 
   <!-- Game board start -->
-  <div id="game" class="main-container">
+  <div id="game" class="main-container ">
     <div id="header" class="">
       <div id="logo" class="logo flex-hor">
         <img src="./assets/icon-x.svg" alt="">
@@ -57,47 +57,52 @@
       <div id="restart"><img src="./assets/icon-restart.svg"></div>
     </div>
     <div id="game-board">
-      <div id="1-1" class="area">
-        <img src="./assets/icon-x.svg" alt="" srcset="">
-      </div>
-      <div id="1-2" class="area"></div>
-      <div id="1-3" class="area"></div>
-      <div id="2-1" class="area"></div>
-      <div id="2-2" class="area"></div>
-      <div id="2-3" class="area"></div>
-      <div id="3-1" class="area"></div>
-      <div id="3-2" class="area"></div>
-      <div id="3-3" class="area"></div>
-
+      <div id="0-0" class="area" data-row="0" data-col="0"></div>
+      <div id="0-1" class="area" data-row="0" data-col="1"></div>
+      <div id="0-2" class="area" data-row="0" data-col="2"></div>
+      <div id="1-0" class="area" data-row="1" data-col="0"></div>
+      <div id="1-1" class="area" data-row="1" data-col="1"></div>
+      <div id="1-2" class="area" data-row="1" data-col="2"></div>
+      <div id="2-0" class="area" data-row="2" data-col="0"></div>
+      <div id="2-1" class="area" data-row="2" data-col="1"></div>
+      <div id="2-2" class="area" data-row="2" data-col="2"></div>
     </div>
 
     <div id="score-board">
-      <div id="cross-score-card">
-        <p>X (<span id="cross-player">You</span>)</p>
-        <h3 id="cross-score-count">0</h3>
+      <div id="x-score-card">
+        <p>X (<span id="x-player">You</span>)</p>
+        <h3 id="x-score-count">0</h3>
       </div>
       <div id="ties-score-card">
         <p>Ties</p>
         <h3 id="ties-score-count">0</h3>
       </div>
-      <div id="circle-score-card">
-        <p>o (<span id="circle-player">CPU</span>)</p>
-        <h3 id="circle-score-count">0</h3>
+      <div id="o-score-card">
+        <p>o (<span id="o-player">CPU</span>)</p>
+        <h3 id="o-score-count">0</h3>
       </div>
     </div>
   </div>
 
 
-  <div id="message-lost" class="hidden">
-    Oh no, you lost
-  </div>
-  <div id="message-won" class="hidden">
-
-    You won!
-    Player <!-- 1/2 --> wins!
+  <div id="message-background" class="hidden">
   </div>
 
-  <div id="message" class="hidden">
+  <div id="result-card" class="flex-ver hidden">
+    <p id="sub-message">OH NO, YOU HAVE LOST</p>
+    <div id="result-message" class="flex-hor"><h1>TAKES THE ROUND</h1></div>
+    <div id="next-step-buttons" class="flex-hor">
+      <div id="quit" class="button-grey bottom-border">
+        Quit
+      </div>
+      <div id="next-round" class="button-yellow bottom-border">
+        NEXT ROUND
+      </div>
+    </div>
+  </div>
+
+
+
     <!-- x/o icon --> takes the round
     Round tied
     Restart game?
@@ -106,7 +111,7 @@
     Next round
     No, cancel
     Yes, restart
-  </div>
+
   <!-- Game board end -->
   <script src="./script.js"></script>
 </body>

@@ -226,6 +226,7 @@ img {
     border-bottom: 5px solid var(--blue6);
     line-height: 100px;
     text-align: center;
+    cursor: pointer;
 }
 
 .area img {
@@ -256,7 +257,7 @@ img {
     font-weight: 600;
 }
 
-#cross-score-card{
+#x-score-card{
     background-color: var(--blue2);
 }
 
@@ -264,6 +265,60 @@ img {
     background-color: var(--grey);
 }
 
-#circle-score-card{
+#o-score-card{
     background-color: var(--yellow2);
 }
+
+/* Result screens */
+
+#message-background{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: black;
+    opacity: 0.5;
+}
+
+#result-card{
+    height: 200px;
+    width:100%;
+    background-color: var(--blue5);
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);
+    gap:10px;
+}
+
+#result-card p{
+color:var(--grey);
+font-size: 0.8rem;
+font-weight: 600;
+}
+
+#result-message{
+    gap:10px;
+    color:var(--yellow2 )
+}
+
+
+#next-step-buttons{
+    gap:15px;
+}
+
+#quit{
+    cursor: pointer ;
+    background-color: var(--grey);
+    width:70px;
+}
+
+#quit:hover{
+    background-color: var(--white);
+}
+
+#next-round{
+    width: 150px;
+}
+
+
