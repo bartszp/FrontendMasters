@@ -15,10 +15,10 @@
     --blue5: rgb(37, 64, 76);
     --blue6: rgb(18, 29, 35);
     --yellow3: rgb(155, 113, 35);
-    --yellow2: rgb(242,177,55);
-    --yellow1: rgb(255,200,96);
+    --yellow2: rgb(242, 177, 55);
+    --yellow1: rgb(255, 200, 96);
     --grey: rgb(168, 191, 201);
-    --white: rgb(219,232,237);
+    --white: rgb(219, 232, 237);
 }
 
 body {
@@ -57,7 +57,7 @@ body {
     border-bottom: 5px solid var(--blue6);
 }
 
-.bottom-border{
+.bottom-border {
     border-radius: 15px;
     border-bottom: 5px solid var(--blue6);
 }
@@ -75,14 +75,14 @@ img {
 
 [class^="button-"] {
     width: 100%;
-    height:50px;
+    height: 50px;
     line-height: 50px;
     text-align: center;
     color: var(--blue6);
     font-weight: 600
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
@@ -138,27 +138,26 @@ img {
 
 #game-mode-selection {
     width: 100%;
-    gap:10px
+    gap: 10px
 }
 
-.button-yellow{
+.button-yellow {
     background-color: var(--yellow2);
     border-color: var(--yellow3)
 }
 
-.button-blue{
+.button-blue {
     background-color: var(--blue2);
     border-color: var(--blue3)
-
 }
 
-.button-yellow:hover{
+.button-yellow:hover {
     background-color: var(--yellow1);
     border-color: var(--yellow2);
     cursor: pointer;
 }
 
-.button-blue:hover{
+.button-blue:hover {
     background-color: var(--blue1);
     border-color: var(--blue2);
     cursor: pointer;
@@ -166,61 +165,62 @@ img {
 
 /* Game board */
 
-#header{
-    padding:0 15px;
+#header {
+    padding: 0 15px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     justify-content: center;
 }
 
-#header #logo{
+#header #logo {
     justify-self: start;
 }
 
-#turn{
+#turn {
     background-color: var(--blue5);
-    color:var(--white);
-    padding:10px;
+    color: var(--white);
+    padding: 10px;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
     background-color: var(--blue5);
     border-radius: 10px;
     border-bottom: 5px solid var(--blue6);
-    
+
 }
 
 #turn img {
-    height:15px;
-    padding-right:8px;
+    height: 15px;
+    padding-right: 8px;
     filter: brightness(0) saturate(100%) invert(80%) sepia(19%) saturate(255%) hue-rotate(153deg) brightness(95%) contrast(81%);
 }
 
-#restart{
+#restart {
     background-color: var(--grey);
-    width:30px;
-    height:30px;
+    width: 30px;
+    height: 30px;
     border-radius: 5px;
     justify-self: right;
     text-align: center;
     line-height: 35px;
+    cursor: pointer;
 }
 
-#restart img{
-    width:15px;
-    height:auto;
+#restart img {
+    width: 15px;
+    height: auto;
 }
 
-#game-board{
-    display:grid;
+#game-board {
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap:15px;
-    padding:15px;
+    gap: 15px;
+    padding: 15px;
 }
 
-.area{
+.area {
     background-color: var(--blue5);
-    height:100px;
+    height: 100px;
     width: 100px;
     border-radius: 10px;
     border-bottom: 5px solid var(--blue6);
@@ -231,94 +231,95 @@ img {
 
 .area img {
     height: auto;
-    margin-top:21%;
+    margin-top: 21%;
     width: 55%;
 }
 
-#score-board{
-    display:grid;
+#score-board {
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding:0 15px;
+    padding: 0 15px;
     align-items: center;
     justify-content: center;
-    gap:15px;
+    gap: 15px;
 }
 
-[id$="-score-card"]{
-    display:flex;
+[id$="-score-card"] {
+    display: flex;
     flex-direction: column;
     align-items: center;
     padding: 6px;
     border-radius: 10px;
 }
 
-[id$="-score-card"] p{
+[id$="-score-card"] p {
     font-size: 0.7rem;
     font-weight: 600;
 }
 
-#x-score-card{
+#x-score-card {
     background-color: var(--blue2);
 }
 
-#ties-score-card{
+#ties-score-card {
     background-color: var(--grey);
 }
 
-#o-score-card{
+#o-score-card {
     background-color: var(--yellow2);
 }
 
 /* Result screens */
 
-#message-background{
+#message-background {
     position: absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: black;
     opacity: 0.5;
 }
 
-#result-card{
-    height: 200px;
-    width:100%;
+.card {
+    height: 250px;
+    width: 100%;
     background-color: var(--blue5);
-    position:absolute;
-    top:50%;
+    position: absolute;
+    top: 50%;
     transform: translateY(-50%);
-    gap:10px;
+    gap: 10px;
 }
 
-#result-card p{
-color:var(--grey);
-font-size: 0.8rem;
-font-weight: 600;
+.card p {
+    color: var(--grey);
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
-#result-message{
-    gap:10px;
-    color:var(--yellow2 )
+.card-message {
+    gap: 10px;
+    color: var(--grey)
 }
 
 
-#next-step-buttons{
-    gap:15px;
+.card-buttons {
+    gap: 15px;
+    margin-top: 20px;
+    min-width:300px;
 }
 
-#quit{
-    cursor: pointer ;
+.button-grey {
+    cursor: pointer;
     background-color: var(--grey);
-    width:70px;
+    padding:0 10px;
+    width: 45%;
 }
 
-#quit:hover{
+.button-grey:hover {
     background-color: var(--white);
 }
 
-#next-round{
-    width: 150px;
+.card .button-yellow {
+    width: 45%;
 }
-
-

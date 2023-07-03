@@ -1,24 +1,30 @@
-
-// Toogle selection between cross and circle
+//General
+let startView = document.getElementById("start-menu");
+let gameView = document.getElementById("game");
 let oBtn = document.getElementById("select-o");
 let xBtn = document.getElementById("select-x");
+let newGamePlayer = document.getElementById("game-vs-player");
+let newGameCPU = document.getElementById("game-vs-cpu");
+
 let board = document.getElementById("game-board");
 
-oBtn.addEventListener("click", () => {
-    oBtn.classList.add("selected");
-    xBtn.classList.remove("selected");
-})
-
-xBtn.addEventListener("click", () => {
-    xBtn.classList.add("selected");
-    oBtn.classList.remove("selected");
-})
-
-//Game
-let gameMode = "cpu";
+let gameMode;
 let turn = "x";
+let player1 = "x";
+
 //score = [x, ties, o]
 let score = [0, 0, 0];
+let turnDisplay = document.getElementById("turn");
+let restartBtn = document.getElementById("restart");
+
+//Result card elements
+let quitBtn = document.getElementById("quit");
+let nextRoundBtn = document.getElementById("next-round");
+//Restart card elements
+let restartCard = document.getElementById("restart-card")
+let noRestartBtn = document.getElementById("no-restart");
+let yesRestartBtn = document.getElementById("yes-restart");
+let restartBtns = document.getElementById("restart-buttons");
 
 class Game {
     constructor(gameMode) {
@@ -26,7 +32,6 @@ class Game {
     }
     addMove(symbol, row, col) {
         this.matrix[row][col] = symbol;
-        console.log(this.matrix)
     }
     //Check if matrix is fully populated, if there is at least one null, return false
     checkTie() {
@@ -65,8 +70,36 @@ class Game {
     ]
 }
 
-let currentGame = new Game(gameMode);
+////Selection board
+// Toogle selection between cross and circle
+oBtn.addEventListener("click", () => {
+    oBtn.classList.add("selected");
+    xBtn.classList.remove("selected");
+    player1 = "o";
+})
 
+xBtn.addEventListener("click", () => {
+    xBtn.classList.add("selected");
+    oBtn.classList.remove("selected");
+})
+
+newGamePlayer.addEventListener("click", ()=>{startGame("player")})
+newGameCPU.addEventListener("click", ()=>{startGame("CPU")})
+
+function startGame(mode){
+    gameMode = mode
+    startView.classList.add("hidden");
+    gameView.classList.remove("hidden");
+    currentGame = new Game(gameMode);
+}
+
+//Game
+
+
+whosTurn(turn);
+//Initiate game
+
+//Perform all operations on board when clicked
 board.addEventListener("click", (e) => {
     //check if click element is a field (has attribute row)
     if (e.target.dataset.row !== undefined) {
@@ -80,6 +113,7 @@ board.addEventListener("click", (e) => {
                 updateScore(currentGame.checkForWin(turn))
             };
             turn = turn === "x" ? "o" : "x";
+            whosTurn(turn)
         }
     }
 })
@@ -149,18 +183,25 @@ function showResult(resultArray) {
         if (resultMessage.firstElementChild.tagName === "IMG") {
             resultMessage.firstElementChild.remove();
         }
-        resultMessage.insertAdjacentHTML("afterbegin", "<h1>NOBODY<H1>");
+        resultMessage.insertAdjacentHTML("afterbegin", "<h1>NOBODY</h1>");
         resultMessage.style.color = "var(--grey)"
     }
     messageBg.classList.remove("hidden")
     resultCard.classList.remove("hidden")
 }
 
+//Display whos turn is 
+function whosTurn(turn) {
+    if (turnDisplay.firstChild.tagName === "IMG") {
+        turnDisplay.firstChild.remove();
+    }
+    turnDisplay.insertAdjacentElement("afterbegin", createElement(turn));
+}
 
+////Next round, restart game etc.
 
 //Next round
-let quitBtn = document.getElementById("quit");
-let nextRoundBtn = document.getElementById("next-round");
+
 
 function nextRound() {
     currentGame = new Game(gameMode);
@@ -180,6 +221,34 @@ function resetBoard() {
 
 nextRoundBtn.addEventListener("click", nextRound);
 
+
+//Restart game
+
+function restart(e) {
+    messageBg.classList.remove("hidden");
+    restartCard.classList.remove("hidden");
+    restartBtns.addEventListener("click", (e) => {
+        if (e.target === noRestartBtn) {
+            messageBg.classList.add("hidden");
+            restartCard.classList.add("hidden");
+        } else if (e.target === yesRestartBtn) {
+            messageBg.classList.add("hidden");
+            restartCard.classList.add("hidden");
+            restartScore();
+            resetBoard();
+        }
+    })
+
+}
+
+function restartScore() {
+    score = [0, 0, 0]
+    xScoreCount.innerText = score[0];
+    oScoreCount.innerText = score[2];
+    tiesScoreCount.innerText = score[1];
+}
+
+restartBtn.addEventListener("click", restart)
 
 
 
