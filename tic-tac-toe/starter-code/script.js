@@ -75,18 +75,23 @@ class Game {
     checkForCompetitorStrike(symbol, enemySymbol) {
         //traverse horizontally
         for (let i = 0; i < 3; i++) {
-            let counter = 0;
+            let counterEnemy = 0;
+            let counterMine = 0;
             let freeSlot = [null, null];
             for (let j = 0; j < 3; j++) {
                 if (this.matrix[i][j] === enemySymbol) {
-                    counter += 1;
+                    counterEnemy += 1;
+                } if (this.matrix[i][j] === symbol){
+                    counterMine += 1;
                 } else {
                     freeSlot = [i, j];
                 }
-                if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0],freeSlot[1]] === null) {
+                if (counterEnemy === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null) {
                     this.addMove(symbol, freeSlot[0], freeSlot[1]);
+                } else if (i === 2){
+
                 }
-            }
+            } 
         }
         //traverse vertically
         for (let i = 0; i < 3; i++) {
@@ -98,7 +103,7 @@ class Game {
                 } else {
                     freeSlot = [j, i];
                 }
-                if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0],freeSlot[1]] === null) {
+                if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null) {
                     this.addMove(symbol, freeSlot[0], freeSlot[1]);
                 }
             }
@@ -112,7 +117,7 @@ class Game {
             } else {
                 freeSlot = [i, i];
             }
-            if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0],freeSlot[1]] === null) {
+            if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null) {
                 this.addMove(symbol, freeSlot[0], freeSlot[1]);
             }
         }
@@ -133,11 +138,14 @@ class Game {
             } else {
                 freeSlot = [i, j];
             }
-            if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0],freeSlot[1]] === null) {
+            if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null) {
                 this.addMove(symbol, freeSlot[0], freeSlot[1]);
             }
         }
-        console.log(this.matrix);
+        console.log(turn);
+        turn = turn === "x" ? "o" : "x";
+        whosTurn(turn)
+        console.log(turn);
 
     }
 }
@@ -195,8 +203,7 @@ board.addEventListener("click", (e) => {
 
             whosTurn(turn)
             currentGame.checkForCompetitorStrike(turn, oppositeTurn);
-            turn = turn === "x" ? "o" : "x";
-            whosTurn(turn)
+
         }
     }
 })
