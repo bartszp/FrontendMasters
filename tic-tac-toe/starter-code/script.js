@@ -32,6 +32,7 @@ class Game {
     }
     addMove(symbol, row, col) {
         this.matrix[row][col] = symbol;
+        document.getElementById(`${row}-${col}`).insertAdjacentElement("beforeend", createElement(symbol))
     }
     //Check if matrix is fully populated, if there is at least one null, return false
     checkTie() {
@@ -68,7 +69,83 @@ class Game {
         [null, null, null],
         [null, null, null]
     ]
+
+    //check if competitor may have a strike
+    //if there are two enemy symbols in the row, plece your symbol to prevent from scoring
+    checkForCompetitorStrike(symbol, enemySymbol) {
+        //traverse horizontally
+        for (let i = 0; i < 3; i++) {
+            let counter = 0;
+            let freeSlot = [null, null];
+            for (let j = 0; j < 3; j++) {
+                if (this.matrix[i][j] === enemySymbol) {
+                    counter += 1;
+                } else {
+                    freeSlot = [i, j];
+                }
+                if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0],freeSlot[1]] === null) {
+                    this.addMove(symbol, freeSlot[0], freeSlot[1]);
+                }
+            }
+        }
+        //traverse vertically
+        for (let i = 0; i < 3; i++) {
+            let counter = 0;
+            let freeSlot = [null, null];
+            for (let j = 0; j < 3; j++) {
+                if (this.matrix[j][i] === enemySymbol) {
+                    counter += 1;
+                } else {
+                    freeSlot = [j, i];
+                }
+                if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0],freeSlot[1]] === null) {
+                    this.addMove(symbol, freeSlot[0], freeSlot[1]);
+                }
+            }
+        }
+        //traverse diagonally \
+        let counter = 0;
+        let freeSlot = [null, null];
+        for (let i = 0; i < 3; i++) {
+            if (this.matrix[i][i] === enemySymbol) {
+                counter += 1;
+            } else {
+                freeSlot = [i, i];
+            }
+            if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0],freeSlot[1]] === null) {
+                this.addMove(symbol, freeSlot[0], freeSlot[1]);
+            }
+        }
+        //traverse diagonally /
+        counter = 0;
+        freeSlot = [null, null];
+        for (let i = 0; i < 3; i++) {
+            let j;
+            if (i === 0) {
+                j = 2;
+            } else if (i === 1) {
+                j = 1;
+            } else {
+                j = 0;
+            }
+            if (this.matrix[i][j] === enemySymbol) {
+                counter += 1;
+            } else {
+                freeSlot = [i, j];
+            }
+            if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0],freeSlot[1]] === null) {
+                this.addMove(symbol, freeSlot[0], freeSlot[1]);
+            }
+        }
+        console.log(this.matrix);
+
+    }
 }
+
+function CPUMove() {
+
+}
+
 
 ////Selection board
 // Toogle selection between cross and circle
@@ -81,12 +158,13 @@ oBtn.addEventListener("click", () => {
 xBtn.addEventListener("click", () => {
     xBtn.classList.add("selected");
     oBtn.classList.remove("selected");
+    player1 = "x";
 })
 
-newGamePlayer.addEventListener("click", ()=>{startGame("player")})
-newGameCPU.addEventListener("click", ()=>{startGame("CPU")})
+newGamePlayer.addEventListener("click", () => { startGame("player") })
+newGameCPU.addEventListener("click", () => { startGame("CPU") })
 
-function startGame(mode){
+function startGame(mode) {
     gameMode = mode
     startView.classList.add("hidden");
     gameView.classList.remove("hidden");
@@ -108,15 +186,22 @@ board.addEventListener("click", (e) => {
         //If selected field is empty, add move in matrix, insert element, and turn to opposite symbol (from o->x and x->o) 
         if (currentGame.matrix[row][col] === null) {
             currentGame.addMove(turn, e.target.dataset.row, e.target.dataset.col);
-            e.target.insertAdjacentElement("beforeend", createElement(turn))
+            //e.target.insertAdjacentElement("beforeend", createElement(turn))
             if (currentGame.checkForWin(turn)[1] || currentGame.checkForWin(turn)[2]) {
                 updateScore(currentGame.checkForWin(turn))
             };
+            oppositeTurn = turn;
+            turn = turn === "x" ? "o" : "x";
+
+            whosTurn(turn)
+            currentGame.checkForCompetitorStrike(turn, oppositeTurn);
             turn = turn === "x" ? "o" : "x";
             whosTurn(turn)
         }
     }
 })
+
+
 
 //Function to create img element with symbol whose turn it is
 function createElement(type) {
