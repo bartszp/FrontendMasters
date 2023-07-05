@@ -73,6 +73,7 @@ class Game {
     //check if competitor may have a strike
     //if there are two enemy symbols in the row, plece your symbol to prevent from scoring
     checkForCompetitorStrike(symbol, enemySymbol) {
+        let moveMadeFlag = false;
         //traverse horizontally
         for (let i = 0; i < 3; i++) {
             let counterEnemy = 0;
@@ -81,17 +82,14 @@ class Game {
             for (let j = 0; j < 3; j++) {
                 if (this.matrix[i][j] === enemySymbol) {
                     counterEnemy += 1;
-                } if (this.matrix[i][j] === symbol){
-                    counterMine += 1;
                 } else {
                     freeSlot = [i, j];
                 }
                 if (counterEnemy === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null) {
                     this.addMove(symbol, freeSlot[0], freeSlot[1]);
-                } else if (i === 2){
-
+                    moveMadeFlag = true;
                 }
-            } 
+            }
         }
         //traverse vertically
         for (let i = 0; i < 3; i++) {
@@ -105,6 +103,7 @@ class Game {
                 }
                 if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null) {
                     this.addMove(symbol, freeSlot[0], freeSlot[1]);
+                    moveMadeFlag = true;
                 }
             }
         }
@@ -119,6 +118,7 @@ class Game {
             }
             if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null) {
                 this.addMove(symbol, freeSlot[0], freeSlot[1]);
+                moveMadeFlag = true;
             }
         }
         //traverse diagonally /
@@ -140,19 +140,37 @@ class Game {
             }
             if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null) {
                 this.addMove(symbol, freeSlot[0], freeSlot[1]);
+                moveMadeFlag = true;
             }
         }
-        console.log(turn);
+        if (moveMadeFlag === false) {
+
+        }
+
         turn = turn === "x" ? "o" : "x";
         whosTurn(turn)
         console.log(turn);
 
     }
+
+    CPUNextMove(symbol, enemySymbol) {
+        let potentialMoves = [];
+
+        for (let i = 0; i < 3; i++) {
+            let counter = 0;
+            for (let j = 0; j < 3; j++) {
+                if (this.matrix[i][j] === symbol) {
+                    counter += 1;
+                }
+                if (counter > 0 && this.matrix[i][j] === null) {
+                    this.addMove(symbol, freeSlot[0], freeSlot[1]);
+                    moveMadeFlag = true;
+                }
+            }
+        }
+    }
 }
 
-function CPUMove() {
-
-}
 
 
 ////Selection board
