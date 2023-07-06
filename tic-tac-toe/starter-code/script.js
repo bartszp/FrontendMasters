@@ -30,6 +30,11 @@ class Game {
     constructor(gameMode) {
         this.gameMode = gameMode
     }
+    matrix = [
+        [null, null, null],
+        [null, null, null],
+        [null, null, null]
+    ]
     addMove(symbol, row, col) {
         this.matrix[row][col] = symbol;
         document.getElementById(`${row}-${col}`).insertAdjacentElement("beforeend", createElement(symbol))
@@ -64,11 +69,6 @@ class Game {
 
         return [symbol, winFlag, this.checkTie()]
     }
-    matrix = [
-        [null, null, null],
-        [null, null, null],
-        [null, null, null]
-    ]
 
     //check if competitor may have a strike
     //if there are two enemy symbols in the row, plece your symbol to prevent from scoring
@@ -101,7 +101,7 @@ class Game {
                 } else {
                     freeSlot = [j, i];
                 }
-                if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null) {
+                if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null && moveMadeFlag == false) {
                     this.addMove(symbol, freeSlot[0], freeSlot[1]);
                     moveMadeFlag = true;
                 }
@@ -116,7 +116,7 @@ class Game {
             } else {
                 freeSlot = [i, i];
             }
-            if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null) {
+            if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null && moveMadeFlag == false) {
                 this.addMove(symbol, freeSlot[0], freeSlot[1]);
                 moveMadeFlag = true;
             }
@@ -138,24 +138,31 @@ class Game {
             } else {
                 freeSlot = [i, j];
             }
-            if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null) {
+            if (counter === 2 && freeSlot[0] !== null && this.matrix[freeSlot[0]][freeSlot[1]] === null && moveMadeFlag == false) {
                 this.addMove(symbol, freeSlot[0], freeSlot[1]);
                 moveMadeFlag = true;
             }
         }
         if (moveMadeFlag === false) {
-
+            this.CPUNextMove(symbol)
         }
+
+        if (this.checkForWin(symbol)[1] || this.checkForWin(symbol)[2]) {
+            updateScore(this.checkForWin(symbol))
+        };
 
         turn = turn === "x" ? "o" : "x";
         whosTurn(turn)
-        console.log(turn);
+        moveMadeFlag === false;
 
     }
 
-    CPUNextMove(symbol, enemySymbol) {
+    CPUNextMove(symbol) {
         let potentialMoves = [];
-
+        let mustHaveMoves = [];
+        //Look for your symbol, if one is detected, save potential spots to place your symbol
+        //if 2 are detected then save must have spots 
+        //traverse horizontally
         for (let i = 0; i < 3; i++) {
             let counter = 0;
             for (let j = 0; j < 3; j++) {
@@ -163,15 +170,102 @@ class Game {
                     counter += 1;
                 }
                 if (counter > 0 && this.matrix[i][j] === null) {
-                    this.addMove(symbol, freeSlot[0], freeSlot[1]);
-                    moveMadeFlag = true;
+                    potentialMoves.push([i, j]);
+                } else if (counter > 1 && this.matrix[i][j] === null) {
+                    mustHaveMoves.push([i, j]);
                 }
             }
         }
+        //traverse vertically
+        for (let i = 0; i < 3; i++) {
+            let counter = 0;
+            for (let j = 0; j < 3; j++) {
+                if (this.matrix[j][i] === symbol) {
+                    counter += 1;
+                }
+                if (counter > 0 && this.matrix[j][i] === null) {
+                    potentialMoves.push([j, i]);
+                } else if (counter > 1 && this.matrix[j][i] === null) {
+                    mustHaveMoves.push([j, i]);
+                }
+            }
+        }
+        //traverse diagonaly \
+        let counter = 0;
+        for (let i = 0; i < 3; i++) {
+            if (this.matrix[i][i] === symbol) {
+                counter += 1;
+            }
+            if (counter > 0 && this.matrix[i][i] === null) {
+                potentialMoves.push([i, i])
+            } else if (counter > 1 && this.matrix[i][i] === null) {
+                mustHaveMoves.push([i, i]);
+            }
+        }
+        //traverse diagonaly /
+        counter = 0;
+        for (let i = 0; i < 3; i++) {
+            let j;
+            if (i === 0) {
+                j = 2;
+            } else if (i === 1) {
+                j = 1;
+            } else {
+                j = 0;
+            }
+            if (this.matrix[i][j] === symbol) {
+                counter += 1;
+            }
+            if (counter > 0 && this.matrix[i][j] === null) {
+                potentialMoves.push([i, j]);
+            } else if (counter > 1 && this.matrix[i][j] === null) {
+                mustHaveMoves.push([i, j])
+            }
+        }
+
+        //add move based on content of must have and potential moves
+
+        if (mustHaveMoves.length > 0) {
+            let randomMove = Math.floor(Math.random() * mustHaveMoves.length);
+            this.addMove(symbol, mustHaveMoves[randomMove][0], mustHaveMoves[randomMove][1])
+        } else if (potentialMoves.length > 0) {
+            let randomMove = Math.floor(Math.random() * potentialMoves.length);
+            this.addMove(symbol, potentialMoves[randomMove][0], potentialMoves[randomMove][1])
+        } else if (potentialMoves.length === 0 && mustHaveMoves.length === 0) {
+            let randomMove = [Math.floor(Math.random() * 3), Math.floor(Math.random() * 3)];
+
+            let check = checkIfMatrixFull()
+            if (!check) {
+                while (this.matrix[randomMove[0]][randomMove[1]] !== null) {
+                    randomMove = [Math.floor(Math.random() * 3), Math.floor(Math.random() * 3)]
+
+                }
+                this.addMove(symbol, randomMove[0], randomMove[1])
+            }
+        }
+        if (this.checkForWin(symbol)[1] || this.checkForWin(symbol)[2]) {
+            updateScore(this.checkForWin(symbol))
+        };
     }
 }
 
 
+
+function checkIfMatrixFull() {
+    let counter = 0
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (currentGame.matrix[i][j] !== null) {
+                counter += 1;
+            }
+        }
+    }
+    if (counter === 9) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 ////Selection board
 // Toogle selection between cross and circle
@@ -188,7 +282,7 @@ xBtn.addEventListener("click", () => {
 })
 
 newGamePlayer.addEventListener("click", () => { startGame("player") })
-newGameCPU.addEventListener("click", () => { startGame("CPU") })
+newGameCPU.addEventListener("click", () => { startGame("cpu") })
 
 function startGame(mode) {
     gameMode = mode
@@ -212,16 +306,20 @@ board.addEventListener("click", (e) => {
         //If selected field is empty, add move in matrix, insert element, and turn to opposite symbol (from o->x and x->o) 
         if (currentGame.matrix[row][col] === null) {
             currentGame.addMove(turn, e.target.dataset.row, e.target.dataset.col);
-            //e.target.insertAdjacentElement("beforeend", createElement(turn))
             if (currentGame.checkForWin(turn)[1] || currentGame.checkForWin(turn)[2]) {
                 updateScore(currentGame.checkForWin(turn))
+                if (!checkIfMatrixFull()) {
+                    return
+                }
             };
             oppositeTurn = turn;
             turn = turn === "x" ? "o" : "x";
-
             whosTurn(turn)
-            currentGame.checkForCompetitorStrike(turn, oppositeTurn);
-
+            if (gameMode === "cpu") {
+                if (!checkIfMatrixFull()) {
+                    currentGame.checkForCompetitorStrike(turn, oppositeTurn);
+                }
+            }
         }
     }
 })
@@ -257,6 +355,7 @@ function updateScore(resultArray) {
     } else if (resultArray[2] === true) {
         score[1] = score[1] + 1
     }
+
     xScoreCount.innerText = score[0];
     oScoreCount.innerText = score[2];
     tiesScoreCount.innerText = score[1];
@@ -272,7 +371,7 @@ function showResult(resultArray) {
         if (resultArray[0] === "x") {
             subMessage.innerText = "Player 1 has won!"
             //Remove symbol that remained from last round
-            if (resultMessage.firstChild.tagName === "IMG") {
+            if (resultMessage.children.length > 1) {
                 resultMessage.firstChild.remove();
             }
             resultMessage.insertAdjacentElement("afterbegin", createElement("x"));
@@ -280,7 +379,7 @@ function showResult(resultArray) {
         } else if (resultArray[0] === "o") {
             subMessage.innerText = "Player 2 has won!"
             //Remove symbol that remained from last round
-            if (resultMessage.firstElementChild.tagName === "IMG") {
+            if (resultMessage.children.length > 1) {
                 resultMessage.firstElementChild.remove();
             }
             resultMessage.insertAdjacentElement("afterbegin", createElement("o"));
@@ -290,7 +389,7 @@ function showResult(resultArray) {
     } else if (resultArray[2] === true) {
         subMessage.innerText = "Tie!"
         //Remove symbol that remained from last round
-        if (resultMessage.firstElementChild.tagName === "IMG") {
+        if (resultMessage.children.length > 1) {
             resultMessage.firstElementChild.remove();
         }
         resultMessage.insertAdjacentHTML("afterbegin", "<h1>NOBODY</h1>");
