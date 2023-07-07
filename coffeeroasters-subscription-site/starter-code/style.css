@@ -1,0 +1,89 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding:0;
+}
+
+:root{
+    --darkCyan: #0E8784;
+    --lightCyan:#66D2CF;
+    --darkGreyBlue: #333D4B;
+    --paleOrange: #FDD6BA;
+    --lightCream: #FEFCF7;
+    --grey: #83888F;
+}
+
+body{
+    color:var(--darkGreyBlue)
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: Fraunces;
+}
+
+p{
+    font-family: Barlow;
+    font-size: 16px;
+}
+
+.hidden{
+    display:none !important;
+
+}
+
+.btn{
+    line-height: 30px;
+    text-align: center;
+    background-color: dark;
+}
+
+.flex{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.column {
+    flex-direction: column;
+}
+
+
+/* HEADER */
+
+header{
+    height:50px;
+}
+
+#header-group{
+    justify-content: space-between;
+
+}
+
+#logo{
+    margin: 15px 0 0 15px;
+    height:20px;
+}
+
+.ham-btn{
+    height:20px;
+    margin: 15px 15px 0 0 ;
+}
+
+
+/* HAMBURGER MENU */
+#menu{
+    position:absolute;
+    top: 50px;
+    left:0;
+    right:0;
+    bottom:0;
+    background: linear-gradient(var(--lightCream) 60%, transparent);
+    justify-content: flex-start;
+
+}
+
+#menu h3{
+    cursor: pointer;
+    margin-top:30px;
+}
