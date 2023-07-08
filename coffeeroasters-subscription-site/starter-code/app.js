@@ -1,6 +1,6 @@
 let hamMenuOpenBtn= document.getElementById("ham-btn-open")
 let hamMenuCloseBtn= document.getElementById("ham-btn-close")
-let hamMenu = document.getElementById("menu");
+let hamMenu = document.getElementById("menu-ham");
 
 
 //Hamburger menu 

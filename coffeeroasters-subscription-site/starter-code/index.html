@@ -19,75 +19,160 @@
       <img src="./assets/shared/desktop/logo.svg" alt="logo" id="logo">
       <img src="./assets/shared/mobile/icon-hamburger.svg" alt="Menu" id="ham-btn-open" class="ham-btn">
       <img src="./assets/shared/mobile/icon-close.svg" alt="Close" id="ham-btn-close" class="hidden ham-btn">
-
-      <div id="menu" class="flex column hidden">
-        <h3>Home</h3>
-        <h3>About us</h3>
-        <h3>Create your plan</h3>
+      <div id="menu" class="flex row hidden">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About us</a>
+        <a href="./plan.html">Create your plan</a>
+      </div>
+      <div id="menu-ham" class="flex column hidden">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About us</a>
+        <a href="./plan.html">Create your plan</a>
       </div>
     </div>
   </header>
-  Great coffee made simple.
+  <section class="main-container">
+    <div id="hero" class="flex column card">
+      <!-- <picture>
+          <source src="./assets/home/desktop/image-hero-coffeepress.jpg" type="" media="(min-width: 1024px)">
+          <img src="./assets/home/mobile/image-hero-coffeepress.jpg" alt="">
+        </picture> -->
+      <h1>Great coffee made simple.</h1>
 
-  Start your mornings with the world’s best coffees. Try our expertly curated artisan
-  coffees from our best roasters delivered directly to your door, at your schedule.
+      <p>Start your mornings with the world’s best coffees. Try our expertly curated artisan
+        coffees from our best roasters delivered directly to your door, at your schedule.</p>
 
-  Create your plan
+      <div class="btn">
+        <a href="./plan.html">Create your plan</a>
+      </div>
 
-  Our collection
+    </div>
+  </section>
 
-  Gran Espresso
-  Light and flavorful blend with cocoa and black pepper for an intense experience
+  <section id="collection" class="main-container">
 
-  Planalto
-  Brazilian dark roast with rich and velvety body, and hints of fruits and nuts
+    <div id="collection-title">
+      <h2>our collection</h2>
+    </div>
 
-  Piccollo
-  Mild and smooth blend featuring notes of toasted almond and dried cherry
+    <div id="collection-group" class="flex column">
 
-  Danche
-  Ethiopian hand-harvested blend densely packed with vibrant fruit notes
+      <div class="collection-card flex column">
+        <img src="./assets/home/desktop/image-gran-espresso.png" alt="">
+        <div class="collection-card-group flex column">
+          <h3>Gran Espresso</h3>
+          <p>Light and flavorful blend with cocoa and black pepper for an intense experience</p>
+        </div>
+      </div>
+      <div class="collection-card flex column">
+        <img src="./assets/home/desktop/image-gran-espresso.png" alt="">
+        <div class="collection-card-group flex column">
+          <h3>Planalto</h3>
+          <p>Brazilian dark roast with rich and velvety body, and hints of fruits and nuts</p>
+        </div>
+      </div>
+      <div class="collection-card flex column">
+        <img src="./assets/home/desktop/image-gran-espresso.png" alt="">
+        <div class="collection-card-group flex column">
+          <h3>Piccollo</h3>
+          <p>Mild and smooth blend featuring notes of toasted almond and dried cherry</p>
+        </div>
+      </div>
+      <div class="collection-card flex column">
+        <img src="./assets/home/desktop/image-gran-espresso.png" alt="">
+        <div class="collection-card-group flex column">
+          <h3>Danche</h3>
+          <p>Ethiopian hand-harvested blend densely packed with vibrant fruit notes</p>
+        </div>
+      </div>
+    </div>
 
-  Why choose us?
+  </section>
 
-  A large part of our role is choosing which particular coffees will be featured
-  in our range. This means working closely with the best coffee growers to give
-  you a more impactful experience on every level.
+  <section id="choice" class="main-container">
+    <div id="choose-card-main" class="card flex column">
+      <h2>Why choose us?</h2>
+      <p>A large part of our role is choosing which particular coffees will be featured
+        in our range. This means working closely with the best coffee growers to give
+        you a more impactful experience on every level.</p>
+    </div>
+    <div id="choose-cards" calss="flex column">
+      <div class="choose-card flex column card">
+        <img src="./assets/home/desktop/icon-coffee-bean.svg" alt="">
+        <div class="choose-card-group flex column">
+          <h3>Best quality</h3>
+          <p>Discover an endless variety of the world’s best artisan coffee from each of our roasters.</p>
+        </div>
+      </div>
 
-  Best quality
-  Discover an endless variety of the world’s best artisan coffee from each of our roasters.
+      <div class="choose-card flex column card">
+        <img src="./assets/home/desktop/icon-gift.svg" alt="">
+        <div class="choose-card-group flex column">
+          <h3>Exclusive benefits</h3>
+          <p>Special offers and swag when you subscribe, including 30% off your first shipment.</p>
+        </div>
+      </div>
 
-  Exclusive benefits
-  Special offers and swag when you subscribe, including 30% off your first shipment.
+      <div class="choose-card flex column card">
+        <img src="./assets/home/desktop/icon-truck.svg" alt="">
+        <div class="choose-card-group flex column">
+          <h3>Free shipping</h3>
+          <p>We cover the cost and coffee is delivered fast. Peak freshness: guaranteed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="section-3" class="main-container">
 
-  Free shipping
-  We cover the cost and coffee is delivered fast. Peak freshness: guaranteed.
+    <h3>How it works</h3>
 
-  How it works
+    <div class="section-3-cards flex column">
+      <div class="section-3-card flex column">
+        <h1>01</h1>
+        <h2>Pick your coffee</h2>
+        <p>Select from our evolving range of artisan coffees. Our beans are ethically
+          sourced and we pay fair prices for them. There are new coffees in all profiles
+          every month for you to try out.</p>
+      </div>
 
-  01
-  Pick your coffee
-  Select from our evolving range of artisan coffees. Our beans are ethically
-  sourced and we pay fair prices for them. There are new coffees in all profiles
-  every month for you to try out.
+      <div class="section-3-card flex column">
+        <h1>02</h1>
+        <h2>Choose the frequency</h2>
+        <p>Customize your order frequency, quantity, even your roast style and grind type.
+          Pause, skip or cancel your subscription with no commitment through our online portal.</p>
+      </div>
 
-  02
-  Choose the frequency
-  Customize your order frequency, quantity, even your roast style and grind type.
-  Pause, skip or cancel your subscription with no commitment through our online portal.
+      <div class="section-3-card flex column">
+        <h1>03</h1>
+        <h2>Receive and enjoy!</h2>
+        <p>We ship your package within 48 hours, freshly roasted. Sit back and enjoy award-winning
+          world-class coffees curated to provide a distinct tasting experience.</p>
+      </div>
+    </div>
 
-  03
-  Receive and enjoy!
-  We ship your package within 48 hours, freshly roasted. Sit back and enjoy award-winning
-  world-class coffees curated to provide a distinct tasting experience.
 
-  Create your plan
+    <div class="btn">
+      <a href="./plan.html">Create your plan</a>
+    </div>
+  </section>
+  <footer class="flex column">
+    <img src="./assets/shared/desktop/logo-white.svg" alt="logo">
+    <div id="footer-links" class="flex column">
+      <a href="./index.html">Home</a>
+      <a href="./about.html">About us</a>
+      <a href="./plan.html">Create your plan</a>
+    </div>
+    <div id="footer-social" class="flex row">
+      <img src="./assets/shared/desktop/icon-facebook.svg" alt="">
+      <img src="./assets/shared/desktop/icon-twitter.svg" alt="">
+      <img src="./assets/shared/desktop/icon-instagram.svg" alt="">
 
-  Home
-  About us
-  Create your plan
+    </div>
+  </footer>
+
 
   <script src="./app.js"></script>
+
 </body>
 
 </html>
